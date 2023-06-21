@@ -1,0 +1,41 @@
+<div class="col-md-2 mt-3">
+    <button type="button" class="btn btn-success btn-sm" routerLink="../post-add">Add</button>
+</div> <br />
+
+<h3>Post List</h3>
+
+<table class="table" *ngIf="posts">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>UserId</th>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of posts">
+            <td>
+                {{item.id}}
+            </td>
+            <td>
+                {{item.userId}}
+            </td>
+            <td>
+                {{item.title}}
+            </td>
+            <td>
+                {{item.body}}
+            </td>
+            <td style="width: 250px;">
+                <button type="button" class="btn btn-info btn-sm"
+                    [routerLink]="['../post-detail', item.id]">Detail</button>
+                <button type="button" class="btn btn-secondary btn-sm ms-2"
+                    [routerLink]="['../post-update', item.id]">Update</button>
+                <button type="button" pButton icon="fa fa-fw fa-trash" class="btn btn-danger btn-sm ms-2"
+                    (click)="onDelete(item.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
