@@ -14,7 +14,7 @@ const generateSecretKey = () => {
 };
 
 const secretKey = generateSecretKey();
-app.post('/login', (req, res) => {
+app.post('/generate-token', (req, res) => {
     const user = {
         userName:  "rimes",
         password:  "rimes@132"
@@ -41,7 +41,7 @@ const verifyToken = (req, res, next) => {
     }
 };
 
-app.post('/profile', verifyToken, (req, res) => {
+app.post('/verify-token', verifyToken, (req, res) => {
     jwt.verify(req.token, secretKey, (err, authData) => {
         if (err) {
             res.send({ result: "invalid token" })
